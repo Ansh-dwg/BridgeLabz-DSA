@@ -1,0 +1,116 @@
+Recursion & Backtracking – Pseudocode Collection
+Factorial
+FUNCTION factorial(n)
+    IF n <= 1 THEN
+        RETURN 1
+    ENDIF
+
+    RETURN n * factorial(n - 1)
+END FUNCTION
+
+MAIN
+    n = 5
+    result = factorial(n)
+    PRINT "Factorial of", n, "=", result
+END MAIN
+Fibonacci
+FUNCTION fib(n)
+    IF n <= 1 THEN
+        RETURN n
+    ENDIF
+
+    RETURN fib(n-1) + fib(n-2)
+END FUNCTION
+
+MAIN
+    n = 6
+    PRINT "Fibonacci of", n, "=", fib(n)
+END MAIN
+Power
+FUNCTION power(x, n)
+    IF n == 0 THEN
+        RETURN 1
+    ENDIF
+
+    RETURN x * power(x, n-1)
+END FUNCTION
+
+MAIN
+    PRINT power(2,4)
+END MAIN
+Sum of Array
+FUNCTION sum(arr, n)
+    IF n == 0 THEN
+        RETURN 0
+    ENDIF
+
+    RETURN arr[n-1] + sum(arr, n-1)
+END FUNCTION
+
+MAIN
+    arr = [2,4,6,8,10]
+    PRINT sum(arr, length(arr))
+END MAIN
+String Permutations
+FUNCTION permute(str, ans)
+    IF length(str) == 0 THEN
+        PRINT ans
+        RETURN
+    ENDIF
+
+    FOR i FROM 0 TO length(str)-1
+        ch = str[i]
+        remaining = str without character at index i
+        permute(remaining, ans + ch)
+    END FOR
+END FUNCTION
+
+MAIN
+    permute("ABC", "")
+END MAIN
+Rat in a Maze (Backtracking)
+FUNCTION solveMaze(maze, x, y, solution)
+
+    IF x == N-1 AND y == N-1 THEN
+        solution[x][y] = 1
+        RETURN TRUE
+    ENDIF
+
+    IF x,y are inside maze AND maze[x][y] == 1 THEN
+
+        solution[x][y] = 1
+
+        IF solveMaze(maze, x+1, y, solution) THEN
+            RETURN TRUE
+        ENDIF
+
+        IF solveMaze(maze, x, y+1, solution) THEN
+            RETURN TRUE
+        ENDIF
+
+        solution[x][y] = 0     // backtrack
+    ENDIF
+
+    RETURN FALSE
+END FUNCTION
+N-Queens (Backtracking)
+FUNCTION solve(board, row)
+
+    IF row == N THEN
+        PRINT board
+        RETURN
+    ENDIF
+
+    FOR col FROM 0 TO N-1
+
+        IF position (row,col) is SAFE THEN
+
+            board[row][col] = 1
+
+            solve(board, row+1)
+
+            board[row][col] = 0     // backtrack
+        ENDIF
+
+    END FOR
+END FUNCTION
